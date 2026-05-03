@@ -4,6 +4,7 @@ using ASC.Web.Configuration;
 using ASC.Web.Data;
 using ASC.Web.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Session;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -30,6 +31,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddOptions();
 builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection("AppSettings"));
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
@@ -59,6 +62,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 
